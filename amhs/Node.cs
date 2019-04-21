@@ -13,9 +13,9 @@ namespace amhs
   private   string      name;
   private   string      remark;
   private   Point       position;
-  private   IPAddress   iPAddress;
+  private   string   iPAddress;
   private   bool        alarmEnable;
-  private   float       timeout;
+  private   int       timeout;
         private string  addressName;
         private string  soundFilePath;
         private string  remoteConnectUser;
@@ -23,10 +23,10 @@ namespace amhs
 
         public string Name { get => name; set => name = value; }
         public string Remark { get => remark; set => remark = value; }
-        public Point Position { get => position; set => position = value; }
-        public IPAddress IPAddress { get => iPAddress; set => iPAddress = value; }
+        public Point Location { get => position; set => position = value; }
+        public string IPAddress { get => iPAddress; set => iPAddress = value; }
         public bool AlarmEnable { get => alarmEnable; set => alarmEnable = value; }
-        public float Timeout { get => timeout; set => timeout = value; }
+        public int Timeout { get => timeout; set => timeout = value; }
         public string SoundFilePath { get => soundFilePath; set => soundFilePath = value; }
         public string RemoteConnectUser { get => remoteConnectUser; set => remoteConnectUser = value; }
         public string RemoteConnectPass { get => remoteConnectPass; set => remoteConnectPass = value; }
@@ -37,7 +37,7 @@ namespace amhs
             string[] values = csvLine.Split('\t');
             Node dailyValues = new Node();
             dailyValues.name = values[0];
-            dailyValues.iPAddress = IPAddress.Parse(values[3]);
+            dailyValues.iPAddress = values[3];
             dailyValues.addressName = values[6];
               return dailyValues;
         }
