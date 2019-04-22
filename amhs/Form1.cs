@@ -20,6 +20,7 @@ namespace amhs
         private NetworkHeartbeat networkHeartbeat;
         private List<Node> listNode;
         private List<PictureBox> pictureBoxes;
+        private float opacityvalue;
 
         public Form1()
         {
@@ -36,24 +37,28 @@ namespace amhs
             //display current time on form
             timer1.Enabled = true;
             timer1.Interval = 1000;
-
+            opacityvalue = float.Parse("80") / 100;
 
         }
 
         private void c_PingDown(object sender, int e)
         {
-            float opacityvalue = float.Parse("80") / 100;
-            pictureBoxes[e].Image = ImageTransparency.ChangeOpacity(Image.FromFile("red.png"), opacityvalue);  //calling ChangeOpacity Function 
+              pictureBoxes[e].Image = ImageTransparency.ChangeOpacity(Image.FromFile("redblink.gif"), opacityvalue);  //calling ChangeOpacity Function 
 
-          var alarmFilePath=!String.IsNullOrEmpty(listNode[e].AlarmFilename)? Path.Combine(Directory.GetCurrentDirectory(), "soundAlarm", listNode[e].AlarmFilename) :  Path.Combine(Directory.GetCurrentDirectory(), "soundAlarm", Properties.Settings.Default.AlarmFileName);
-            SoundPlayer my_wave_file = new SoundPlayer(alarmFilePath);
-            my_wave_file.Play();
+            //neu enable sound alarm thi moi keu
+            if (listNode[e].AlarmEnable)
+            {
+                var alarmFilePath = !String.IsNullOrEmpty(listNode[e].AlarmFilename) ? Path.Combine(Directory.GetCurrentDirectory(), "soundAlarm", listNode[e].AlarmFilename) : Path.Combine(Directory.GetCurrentDirectory(), "soundAlarm", Properties.Settings.Default.AlarmFileName);
+                SoundPlayer my_wave_file = new SoundPlayer(alarmFilePath);
+                my_wave_file.Play(); 
+            }
+
+          
         }
 
         private void c_PingUp(object sender, int e)
         {
 
-            float opacityvalue = float.Parse("80") / 100;
             pictureBoxes[e].Image = ImageTransparency.ChangeOpacity(Image.FromFile("green.png"), opacityvalue);  //calling ChangeOpacity Function 
 
 
@@ -134,35 +139,39 @@ namespace amhs
             clearAllPictureBox();
             foreach (var item in listNode)
             {
-                PictureBox pictureBox = new PictureBox();
-                pictureBox.BackColor = Color.Transparent;
-                
-                if (item.Location.Equals(new Point(0,0)))
-                {
-                    pictureBox.Location = new System.Drawing.Point(103, 82); 
-                }
-                else
-                {
-                    pictureBox.Location = item.Location;
-                }
-                pictureBox.Name = item.Name;
-                pictureBox.Size = new System.Drawing.Size(60, 60);
-                pictureBox.TabIndex = 0;
-                pictureBox.TabStop = false;
-
-                //event draw pictureBox
-                pictureBox.Paint += picBox_Paint;
-                //event click pictureBox
-                pictureBox.MouseDoubleClick += picBox_MouseClick;
-
-                float opacityvalue = float.Parse("80") / 100;
-                pictureBox.Image = ImageTransparency.ChangeOpacity(Image.FromFile("red.png"), opacityvalue);  //calling ChangeOpacity Function 
-                
-
-                this.Controls.Add(pictureBox);
-                ControlMover.Init(pictureBox);
-                pictureBoxes.Add(pictureBox);
+                CreatePicturebox(item);
             }
+        }
+
+        private void CreatePicturebox(Node item)
+        {
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.BackColor = Color.Transparent;
+
+            if (item.Location.Equals(new Point(0, 0)))
+            {
+                pictureBox.Location = new System.Drawing.Point(103, 82);
+            }
+            else
+            {
+                pictureBox.Location = item.Location;
+            }
+            pictureBox.Name = item.Name;
+            pictureBox.Size = new System.Drawing.Size(60, 60);
+            pictureBox.TabIndex = 0;
+            pictureBox.TabStop = false;
+
+            //event draw pictureBox
+            pictureBox.Paint += picBox_Paint;
+            //event click pictureBox
+            pictureBox.MouseDoubleClick += picBox_MouseClick;
+
+            pictureBox.Image = ImageTransparency.ChangeOpacity(Image.FromFile("red.png"), opacityvalue);  //calling ChangeOpacity Function 
+
+
+            this.Controls.Add(pictureBox);
+            ControlMover.Init(pictureBox);
+            pictureBoxes.Add(pictureBox);
         }
 
         private void picBox_MouseClick(object sender, MouseEventArgs e)
@@ -170,16 +179,21 @@ namespace amhs
             Node node = listNode.Find(o => o.Name.Equals(((PictureBox)sender).Name));
             NodeInfo nodeInfo = new NodeInfo(node);
             // Show nodeInfo as a modal dialog and determine if DialogResult = OK.
-            if (nodeInfo.ShowDialog(this) == DialogResult.OK)
+            var nodeInfoStatusReturn = nodeInfo.ShowDialog(this);
+            if (nodeInfoStatusReturn == DialogResult.OK)
             {
                 // Read the contents of nodeInfo's TextBox.
                 node = nodeInfo.ReturnValue11;
                 //update picturebox name if changed
                 ((PictureBox)sender).Name = node.Name;
+                ((PictureBox)sender).Image = ImageTransparency.ChangeOpacity(Image.FromFile("red.png"), opacityvalue);  //calling ChangeOpacity Function 
+                ((PictureBox)sender).Refresh();
             }
-            else
+            //node delete
+            else if (nodeInfoStatusReturn == DialogResult.Abort)
             {
-               
+                listNode.Remove(node);
+                this.Controls.Remove(((PictureBox)sender));
             }
             nodeInfo.Dispose();
         }
@@ -264,6 +278,24 @@ namespace amhs
                     
                 } 
             }
+        }
+
+        private void addNodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Node node;
+            NodeInfo nodeInfo = new NodeInfo(listNode.Count);
+            // Show nodeInfo as a modal dialog and determine if DialogResult = OK.
+            var nodeInfoStatusReturn = nodeInfo.ShowDialog(this);
+            if (nodeInfoStatusReturn == DialogResult.OK)
+            {
+                // Read the contents of nodeInfo's TextBox.
+                node = nodeInfo.ReturnValue11;
+         
+                //add node to form and list
+                listNode.Add(node);
+                CreatePicturebox(node);
+            }
+            nodeInfo.Dispose();
         }
     }
 }

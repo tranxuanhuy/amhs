@@ -46,6 +46,7 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.addNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,7 +97,8 @@
             // sysParamToolStripMenuItem
             // 
             this.sysParamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sysParamToolStripMenuItem1});
+            this.sysParamToolStripMenuItem1,
+            this.addNodeToolStripMenuItem});
             this.sysParamToolStripMenuItem.Name = "sysParamToolStripMenuItem";
             this.sysParamToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.sysParamToolStripMenuItem.Text = "Edit";
@@ -173,6 +175,13 @@
             this.progressBar1.Size = new System.Drawing.Size(100, 23);
             this.progressBar1.TabIndex = 7;
             // 
+            // addNodeToolStripMenuItem
+            // 
+            this.addNodeToolStripMenuItem.Name = "addNodeToolStripMenuItem";
+            this.addNodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addNodeToolStripMenuItem.Text = "Add Node";
+            this.addNodeToolStripMenuItem.Click += new System.EventHandler(this.addNodeToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,6 +220,7 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.ToolStripMenuItem addNodeToolStripMenuItem;
     }
 }
 

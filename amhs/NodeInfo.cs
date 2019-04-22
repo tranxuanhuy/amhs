@@ -17,9 +17,14 @@ namespace amhs
 
         public Node ReturnValue11 { get => ReturnValue1; set => ReturnValue1 = value; }
 
-        public NodeInfo()
+        public NodeInfo(int count)
         {
             InitializeComponent();
+            button3.Visible = false;
+            node = new Node();
+            node.ID1 = count;
+            node.AlarmEnable = true;
+            Text = "Add Node";
         }
 
         public NodeInfo(Node node)
@@ -77,6 +82,13 @@ namespace amhs
          node.RemoteConnectPass   =       textBox9.Text ;
             node.ID1 = int.Parse(textBox10.Text);
             node.AlarmEnable         =   checkBox1.Checked ;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            //delete node
+            this.DialogResult = DialogResult.Abort;
+            this.Close();
         }
     }
 }
