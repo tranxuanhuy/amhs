@@ -65,16 +65,34 @@
     <Compile Include="ImageTransparency.cs" />
     <Compile Include="NetworkHeartbeat.cs" />
     <Compile Include="Node.cs" />
+    <Compile Include="NodeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NodeInfo.Designer.cs">
+      <DependentUpon>NodeInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="PingHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SysParam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SysParam.Designer.cs">
+      <DependentUpon>SysParam.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NodeInfo.resx">
+      <DependentUpon>NodeInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SysParam.resx">
+      <DependentUpon>SysParam.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
