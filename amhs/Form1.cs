@@ -33,6 +33,10 @@ namespace amhs
             //this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
 
+            //display current time on form
+            timer1.Enabled = true;
+            timer1.Interval = 1000;
+
 
         }
 
@@ -221,6 +225,7 @@ namespace amhs
             networkHeartbeat.PingDown += c_PingDown;
 
             networkHeartbeat.Start();
+
         }
 
         private void StopToolStripMenuItem_Click(object sender, EventArgs e)
@@ -238,6 +243,27 @@ namespace amhs
         {
             networkHeartbeat.Stop();
             networkHeartbeatStart();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //update clock
+            label1.Text = DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+
+            //update progress bar
+            if (networkHeartbeat != null)
+            {
+                if (networkHeartbeat.Running)
+                {
+                    if (progressBar1.Value == 100)
+                    {
+                        progressBar1.Value = 0;
+                    }
+                  
+                        progressBar1.Value += 10;
+                    
+                } 
+            }
         }
     }
 }
