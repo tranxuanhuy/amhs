@@ -22,6 +22,9 @@ namespace amhs
             textBox1.Text= Properties.Settings.Default.PingTimeout.ToString();
             textBox2.Text = Properties.Settings.Default.PingDelay.ToString();
             textBox3.Text = Properties.Settings.Default.AlarmFileName;
+            textBox4.Text = Properties.Settings.Default.NodeSize.ToString();
+            checkBox1.Checked= Properties.Settings.Default.PictureBoxLabelShow;
+            checkBox2.Checked = Properties.Settings.Default.MovingNodeEnable;
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -35,6 +38,9 @@ namespace amhs
             Properties.Settings.Default.PingTimeout = int.Parse(textBox1.Text);
             Properties.Settings.Default.PingDelay = int.Parse(textBox2.Text);
              Properties.Settings.Default.AlarmFileName= textBox3.Text;
+            Properties.Settings.Default.NodeSize = int.Parse(textBox4.Text);
+            Properties.Settings.Default.PictureBoxLabelShow = checkBox1.Checked;
+            Properties.Settings.Default.MovingNodeEnable = checkBox2.Checked;
             Properties.Settings.Default.Save();
             this.DialogResult = DialogResult.OK;
             this.Close();

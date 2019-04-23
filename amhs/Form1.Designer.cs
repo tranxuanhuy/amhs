@@ -36,7 +36,9 @@
             this.loadConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveConfigToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sysParamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downAcknowledgeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sysParamToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.addNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,7 +48,6 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.addNodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,32 +77,40 @@
             // loadBeginToolStripMenuItem
             // 
             this.loadBeginToolStripMenuItem.Name = "loadBeginToolStripMenuItem";
-            this.loadBeginToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadBeginToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.loadBeginToolStripMenuItem.Text = "Load Begin";
             this.loadBeginToolStripMenuItem.Click += new System.EventHandler(this.loadBeginToolStripMenuItem_Click);
             // 
             // loadConfigToolStripMenuItem
             // 
             this.loadConfigToolStripMenuItem.Name = "loadConfigToolStripMenuItem";
-            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.loadConfigToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.loadConfigToolStripMenuItem.Text = "Load Config";
             this.loadConfigToolStripMenuItem.Click += new System.EventHandler(this.loadConfigToolStripMenuItem_Click);
             // 
             // saveConfigToolStripMenuItem
             // 
             this.saveConfigToolStripMenuItem.Name = "saveConfigToolStripMenuItem";
-            this.saveConfigToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveConfigToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.saveConfigToolStripMenuItem.Text = "Save Config";
             this.saveConfigToolStripMenuItem.Click += new System.EventHandler(this.saveConfigToolStripMenuItem_Click);
             // 
             // sysParamToolStripMenuItem
             // 
             this.sysParamToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.downAcknowledgeToolStripMenuItem,
             this.sysParamToolStripMenuItem1,
             this.addNodeToolStripMenuItem});
             this.sysParamToolStripMenuItem.Name = "sysParamToolStripMenuItem";
             this.sysParamToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.sysParamToolStripMenuItem.Text = "Edit";
+            // 
+            // downAcknowledgeToolStripMenuItem
+            // 
+            this.downAcknowledgeToolStripMenuItem.Name = "downAcknowledgeToolStripMenuItem";
+            this.downAcknowledgeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.downAcknowledgeToolStripMenuItem.Text = "Down Acknowledge";
+            this.downAcknowledgeToolStripMenuItem.Click += new System.EventHandler(this.DownAcknowledgeToolStripMenuItem_Click);
             // 
             // sysParamToolStripMenuItem1
             // 
@@ -109,6 +118,13 @@
             this.sysParamToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.sysParamToolStripMenuItem1.Text = "Sys Param";
             this.sysParamToolStripMenuItem1.Click += new System.EventHandler(this.SysParamToolStripMenuItem1_Click);
+            // 
+            // addNodeToolStripMenuItem
+            // 
+            this.addNodeToolStripMenuItem.Name = "addNodeToolStripMenuItem";
+            this.addNodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.addNodeToolStripMenuItem.Text = "Add Node";
+            this.addNodeToolStripMenuItem.Click += new System.EventHandler(this.addNodeToolStripMenuItem_Click);
             // 
             // pingToolStripMenuItem
             // 
@@ -123,21 +139,21 @@
             // startToolStripMenuItem
             // 
             this.startToolStripMenuItem.Name = "startToolStripMenuItem";
-            this.startToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.startToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.startToolStripMenuItem.Text = "Start";
             this.startToolStripMenuItem.Click += new System.EventHandler(this.StartToolStripMenuItem_Click);
             // 
             // restartToolStripMenuItem
             // 
             this.restartToolStripMenuItem.Name = "restartToolStripMenuItem";
-            this.restartToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.restartToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.restartToolStripMenuItem.Text = "Restart";
             this.restartToolStripMenuItem.Click += new System.EventHandler(this.RestartToolStripMenuItem_Click);
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.stopToolStripMenuItem.Text = "Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.StopToolStripMenuItem_Click);
             // 
@@ -152,8 +168,9 @@
             // updownTimeToolStripMenuItem1
             // 
             this.updownTimeToolStripMenuItem1.Name = "updownTimeToolStripMenuItem1";
-            this.updownTimeToolStripMenuItem1.Size = new System.Drawing.Size(146, 22);
+            this.updownTimeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.updownTimeToolStripMenuItem1.Text = "Updown time";
+            this.updownTimeToolStripMenuItem1.Click += new System.EventHandler(this.UpdownTimeToolStripMenuItem1_Click);
             // 
             // timer1
             // 
@@ -174,13 +191,6 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(100, 23);
             this.progressBar1.TabIndex = 7;
-            // 
-            // addNodeToolStripMenuItem
-            // 
-            this.addNodeToolStripMenuItem.Name = "addNodeToolStripMenuItem";
-            this.addNodeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.addNodeToolStripMenuItem.Text = "Add Node";
-            this.addNodeToolStripMenuItem.Click += new System.EventHandler(this.addNodeToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -221,6 +231,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ToolStripMenuItem addNodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem downAcknowledgeToolStripMenuItem;
     }
 }
 

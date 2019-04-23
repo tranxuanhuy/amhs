@@ -11,5 +11,14 @@
     <Setting Name="AlarmFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)">AMHSDOWN-01.wav</Value>
     </Setting>
+    <Setting Name="NodeSize" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="PictureBoxLabelShow" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="MovingNodeEnable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.NetworkInformation;
@@ -17,16 +18,18 @@ namespace amhs
         public int PingTimeout { get; private set; }
         public int HeartbeatDelay { get; private set; }
         public IPAddress[] EndPoints { get; private set; }
+        public string[] NodeNames { get; private set; }
         public int Count => EndPoints.Length;
         public PingReply[] PingResults { get; private set; }
         private Ping[] Pings { get; set; }
 
-        public NetworkHeartbeat(IEnumerable<IPAddress> hosts, int pingTimeout, int heartbeatDelay)
+        public NetworkHeartbeat(IEnumerable<IPAddress> hosts, int pingTimeout, int heartbeatDelay, IEnumerable<string> NodeNameList)
         {
             PingTimeout = pingTimeout;
             HeartbeatDelay = heartbeatDelay;
 
             EndPoints = hosts.ToArray();
+            NodeNames = NodeNameList.ToArray();
             PingResults = new PingReply[EndPoints.Length];
             Pings = EndPoints.Select(h => new Ping()).ToArray();
         }
@@ -145,7 +148,21 @@ namespace amhs
         public event EventHandler<int> PingDown;
         private void OnPingDown(int epIndex)
         {
-            Debug.WriteLine("# Ping [DOWN] at " + EndPoints[epIndex]);
+            //Debug.WriteLine("# Ping [DOWN] at " + EndPoints[epIndex]);
+            //            String data = String.Format("{0,-10} {1,-20} {2,-20} {3}",
+            //DateTime.Now.ToString("HH:mm:ss"), "DOWN", EndPoints[epIndex], NodeNames[epIndex]);
+
+            String data = DateTime.Now.ToString("HH:mm:ss") + "\t" + "DOWN" + "\t" + EndPoints[epIndex] + "\t" + NodeNames[epIndex];
+            Debug.WriteLine(data);
+
+            //When Date change create new file, append log
+            var sFileName = Path.Combine(Directory.GetCurrentDirectory(), "log", DateTime.Today.ToString("yyyy_MM_dd") + ".log");
+            using (StreamWriter w = File.AppendText(sFileName))
+            {
+                
+                w.WriteLine(data);
+            }
+
             PingDown?.Invoke(this, epIndex);
         }
 
@@ -153,7 +170,19 @@ namespace amhs
         public event EventHandler<int> PingUp;
         private void OnPingUp(int epIndex)
         {
-            Debug.WriteLine("# Ping [UP] at " + EndPoints[epIndex]);
+            //Debug.WriteLine("# Ping [UP] at " + EndPoints[epIndex]);
+            //            String data = String.Format("{0,-10} {1,-20} {2,-20} {3}",
+            //DateTime.Now.ToString("HH:mm:ss"), "UP", EndPoints[epIndex], NodeNames[epIndex]);
+            String data = DateTime.Now.ToString("HH:mm:ss") + "\t" + "UP" + "\t" + EndPoints[epIndex] + "\t" + NodeNames[epIndex];
+            Debug.WriteLine(data);
+
+            //When Date change create new file, append log
+            var sFileName = Path.Combine(Directory.GetCurrentDirectory(), "log", DateTime.Today.ToString("yyyy_MM_dd") + ".log")  ;
+            using (StreamWriter w = File.AppendText(sFileName))
+            {
+                w.WriteLine(data);
+            }
+
             PingUp?.Invoke(this, epIndex);
         }
 

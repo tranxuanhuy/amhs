@@ -80,6 +80,12 @@
     <Compile Include="SysParam.Designer.cs">
       <DependentUpon>SysParam.cs</DependentUpon>
     </Compile>
+    <Compile Include="UpdownTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UpdownTime.Designer.cs">
+      <DependentUpon>UpdownTime.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,6 +100,14 @@
     <EmbeddedResource Include="SysParam.resx">
       <DependentUpon>SysParam.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UpdownTime.resx">
+      <DependentUpon>UpdownTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="bin\Debug\amhs.exe.config" />
+    <None Include="bin\Debug\config - Copy.json" />
+    <None Include="bin\Debug\config.json" />
+    <None Include="bin\Debug\nodeInputAtBeginning.csv" />
+    <None Include="bin\Debug\nodeInputAtBeginning.xlsx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -113,8 +127,19 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="bin\Debug\" />
+    <Content Include="bin\Debug\amhs.exe" />
+    <Content Include="bin\Debug\AMHS.jpg" />
+    <Content Include="bin\Debug\amhs.pdb" />
+    <Content Include="bin\Debug\green.PNG" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.pdb" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="bin\Debug\nodeInputAtBeginning.txt" />
+    <Content Include="bin\Debug\red.PNG" />
+    <Content Include="bin\Debug\soundAlarm\AMHSDOWN-01.wav" />
+    <Content Include="bin\Debug\soundAlarm\sound-timeout-record.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

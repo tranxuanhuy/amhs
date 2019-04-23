@@ -58,5 +58,41 @@ namespace amhs.Properties {
                 this["AlarmFileName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int NodeSize {
+            get {
+                return ((int)(this["NodeSize"]));
+            }
+            set {
+                this["NodeSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PictureBoxLabelShow {
+            get {
+                return ((bool)(this["PictureBoxLabelShow"]));
+            }
+            set {
+                this["PictureBoxLabelShow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool MovingNodeEnable {
+            get {
+                return ((bool)(this["MovingNodeEnable"]));
+            }
+            set {
+                this["MovingNodeEnable"] = value;
+            }
+        }
     }
 }
