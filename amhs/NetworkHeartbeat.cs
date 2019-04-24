@@ -77,7 +77,7 @@ namespace amhs
                                 }
                                 else if (pingResult.Status != PingResults[i].Status)
                                 {
-                                    if (pingResult.Status == IPStatus.Success)
+                                    if (pingResult.Status == IPStatus.Success && pingRetryDownCount[i]> Properties.Settings.Default.PingRetryBeforeDown)
                                         OnPingUp(i);
                                     else if (PingResults[i].Status == IPStatus.Success)
                                         pingRetryDownCount[i] = 0;
