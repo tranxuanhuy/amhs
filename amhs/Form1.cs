@@ -50,7 +50,8 @@ namespace amhs
         private void c_PingDown(object sender, int e)
         {
             pictureBoxes[e].Image.Dispose();
-            pictureBoxes[e].Image = Image.FromFile("redblink.gif");   //calling ChangeOpacity Function 
+            pictureBoxes[e].Image = ImageTransparency.ChangeOpacity(Image.FromFile("red.png"), opacityvalue);  //calling ChangeOpacity Function 
+            //pictureBoxes[e].Image = Image.FromFile("redblink.gif");   //calling ChangeOpacity Function 
 
             //neu enable sound alarm thi moi keu
             if (listNode[e].AlarmEnable)
@@ -264,6 +265,9 @@ namespace amhs
             networkHeartbeat = new NetworkHeartbeat(IPList, Properties.Settings.Default.PingTimeout, Properties.Settings.Default.PingDelay, listNode);
             networkHeartbeat.PingUp += c_PingUp;
             networkHeartbeat.PingDown += c_PingDown;
+
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
 
             networkHeartbeat.Start();
 

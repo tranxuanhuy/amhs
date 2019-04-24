@@ -46,6 +46,7 @@ namespace amhs
                 {
                     Debug.WriteLine("Heartbeat : starting ...");
 
+                    int[] pingRetryDownCount = new int[Count];
                     // set up the tasks
                     var chrono = new Stopwatch();
                     var tasks = new Task<PingReply>[Count];
@@ -79,7 +80,15 @@ namespace amhs
                                     if (pingResult.Status == IPStatus.Success)
                                         OnPingUp(i);
                                     else if (PingResults[i].Status == IPStatus.Success)
+                                        pingRetryDownCount[i] = 0;
+                                }
+                                else if ((pingResult.Status == PingResults[i].Status)&& pingResult.Status!= IPStatus.Success)
+                                {
+                                    pingRetryDownCount[i]++;
+                                    if (pingRetryDownCount[i]== Properties.Settings.Default.PingRetryBeforeDown)
+                                    {
                                         OnPingDown(i);
+                                    }
                                 }
                             }
                             else
