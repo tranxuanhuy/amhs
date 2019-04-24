@@ -261,8 +261,7 @@ namespace amhs
         {
             //get IPadress and pass to ping function
             List<IPAddress> IPList = listNode.Select(o => IPAddress.Parse(o.IPAddress)).ToList();
-            List<string> NodeNameList= listNode.Select(o => o.Name).ToList();
-            networkHeartbeat = new NetworkHeartbeat(IPList, Properties.Settings.Default.PingTimeout, Properties.Settings.Default.PingDelay, NodeNameList);
+            networkHeartbeat = new NetworkHeartbeat(IPList, Properties.Settings.Default.PingTimeout, Properties.Settings.Default.PingDelay, listNode);
             networkHeartbeat.PingUp += c_PingUp;
             networkHeartbeat.PingDown += c_PingDown;
 

@@ -19,6 +19,7 @@ namespace amhs
 
         private void SysParam_Load(object sender, EventArgs e)
         {
+            textBox5.Text = Properties.Settings.Default.PingRetryBeforeDown.ToString();
             textBox1.Text= Properties.Settings.Default.PingTimeout.ToString();
             textBox2.Text = Properties.Settings.Default.PingDelay.ToString();
             textBox3.Text = Properties.Settings.Default.AlarmFileName;
@@ -35,6 +36,7 @@ namespace amhs
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            Properties.Settings.Default.PingRetryBeforeDown = int.Parse(textBox5.Text);
             Properties.Settings.Default.PingTimeout = int.Parse(textBox1.Text);
             Properties.Settings.Default.PingDelay = int.Parse(textBox2.Text);
              Properties.Settings.Default.AlarmFileName= textBox3.Text;

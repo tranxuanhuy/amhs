@@ -19,17 +19,21 @@ namespace amhs
         public int HeartbeatDelay { get; private set; }
         public IPAddress[] EndPoints { get; private set; }
         public string[] NodeNames { get; private set; }
+
+        private int[] NodeTimeout;
+
         public int Count => EndPoints.Length;
         public PingReply[] PingResults { get; private set; }
         private Ping[] Pings { get; set; }
 
-        public NetworkHeartbeat(IEnumerable<IPAddress> hosts, int pingTimeout, int heartbeatDelay, IEnumerable<string> NodeNameList)
+        public NetworkHeartbeat(IEnumerable<IPAddress> hosts, int pingTimeout, int heartbeatDelay, IEnumerable<Node> listNode)
         {
             PingTimeout = pingTimeout;
             HeartbeatDelay = heartbeatDelay;
 
             EndPoints = hosts.ToArray();
-            NodeNames = NodeNameList.ToArray();
+            NodeNames = listNode.Select(o => o.Name).ToArray();
+            NodeTimeout = listNode.Select(o => o.Timeout).ToArray();
             PingResults = new PingReply[EndPoints.Length];
             Pings = EndPoints.Select(h => new Ping()).ToArray();
         }
@@ -119,7 +123,9 @@ namespace amhs
         {
             try
             {
-                return await ping.SendPingAsync(epIP, PingTimeout);
+                //return await ping.SendPingAsync(epIP, PingTimeout);
+                //neu pingtimeout cua node ko set (=0) thi lay value cua system ping timeout
+                return await ping.SendPingAsync(epIP, NodeTimeout[epIndex]==0?PingTimeout: NodeTimeout[epIndex]);
             }
             catch (Exception ex)
             {
