@@ -1,0 +1,65 @@
+MET Đà Nẵng 192.168.1.6 # Ping [UP] at 15:01:33
+ATN 192.168.1.7 # Ping [UP] at 15:01:33
+MET Đà Nẵng 192.168.1.6 # Ping [DOWN] at 15:16:09
+MET Đà Nẵng 192.168.1.6 # Ping [UP] at 15:25:10
+MET Đà Nẵng 192.168.1.6 # Ping [DOWN] at 15:25:20
+MET Đà Nẵng 192.168.1.6 # Ping [UP] at 15:26:05
+MET Đà Nẵng 192.168.1.6 # Ping [DOWN] at 15:26:10
+ATN 192.168.1.7 # Ping [DOWN] at 15:26:50
+MET Đà Nẵng 192.168.1.6 # Ping [UP] at 15:28:56
+ATN 192.168.1.7 # Ping [UP] at 15:28:56
+15:32:00	# Ping [UP] at	MET Đà Nẵng	192.168.1.6
+15:32:04	# Ping [UP] at	ATN	192.168.1.7
+15:32:29	# Ping [DOWN] at	MET Đà Nẵng	192.168.1.6
+15:32:34	# Ping [DOWN] at	ATN	192.168.1.7
+15:33:40	# Ping [UP] at	MET Đà Nẵng	192.168.1.6
+15:36:00	# Ping [DOWN] at	MET Đà Nẵng	192.168.1.6
+15:42:48	# Ping [UP] at		192.168.1.6	MET Đà Nẵng
+15:42:53	# Ping [UP] at		192.168.1.7	ATN
+15:43:08	# Ping [DOWN] at		192.168.1.6	MET Đà Nẵng
+15:43:08	# Ping [DOWN] at		192.168.1.7	ATN
+15:47:51	# Ping [UP] at		192.168.1.6	MET Đà Nẵng
+15:47:51	# Ping [UP] at		192.168.1.7	ATN
+15:47:56                            # Ping [DOWN] at     192.168.1.6 MET Đà Nẵng
+15:47:56                            # Ping [DOWN] at     192.168.1.7 ATN       
+15:49:38   # Ping [UP] at       192.168.1.6          MET Đà Nẵng
+15:49:38   # Ping [UP] at       192.168.1.7          ATN       
+15:49:48   # Ping [DOWN] at     192.168.1.6          MET Đà Nẵng
+15:49:48   # Ping [DOWN] at     192.168.1.7          ATN       
+16:17:45   # Ping [UP] at       192.168.1.7          ATN       
+16:17:50   # Ping [UP] at       192.168.1.6          MET Đà Nẵng
+16:18:10   # Ping [DOWN] at     192.168.1.6          MET Đà Nẵng
+16:18:10   # Ping [DOWN] at     192.168.1.7          ATN       
+16:29:48   # Ping [UP] at       192.168.1.7          ATN       
+16:29:53   # Ping [UP] at       192.168.1.6          MET Đà Nẵng
+16:29:58   # Ping [DOWN] at     192.168.1.6          MET Đà Nẵng
+16:29:58   # Ping [DOWN] at     192.168.1.7          ATN
+16:30:38   # Ping [UP] at       192.168.1.6          MET Đà Nẵng
+16:30:43   # Ping [UP] at       192.168.1.7          ATN       
+16:31:46   # Ping [UP] at       192.168.1.6          MET Đà Nẵng
+16:31:46   # Ping [UP] at       192.168.1.7          ATN
+16:31:56   # Ping [DOWN] at     192.168.1.6          MET Đà Nẵng
+16:31:56   # Ping [DOWN] at     192.168.1.7          ATN
+16:32:06   # Ping [UP] at       192.168.1.6          MET Đà Nẵng
+16:32:11   # Ping [UP] at       192.168.1.7          ATN
+16:35:11   UP                   192.168.1.6          MET Đà Nẵng
+16:35:12   UP                   192.168.1.7          ATN
+16:35:27   DOWN                 192.168.1.6          MET Đà Nẵng
+16:35:27   DOWN                 192.168.1.7          ATN
+16:35:46   UP                   192.168.1.6          MET Đà Nẵng
+16:35:46   UP                   192.168.1.7          ATN
+16:36:49   UP__                 192.168.1.6          MET Đà Nẵng
+16:36:54   UP__                 192.168.1.7          ATN
+16:39:24   DOWN                 192.168.1.6          MET Đà Nẵng
+16:39:59   UP__                 192.168.1.6          MET Đà Nẵng
+16:43:30   UP                   192.168.1.6          MET Đà Nẵng
+16:43:30   UP                   192.168.1.7          ATN
+16:43:40   DOWN                 192.168.1.7          ATN
+16:46:30	UP	192.168.1.6	MET Đà Nẵng
+16:46:35	UP	192.168.1.7	ATN
+16:46:45	DOWN	192.168.1.6	MET Đà Nẵng
+16:46:45	DOWN	192.168.1.7	ATN
+16:46:50	UP	192.168.1.7	ATN
+16:46:55	UP	192.168.1.6	MET Đà Nẵng
+16:47:52	UP	192.168.1.6	MET Đà Nẵng
+16:47:52	UP	192.168.1.7	ATN
