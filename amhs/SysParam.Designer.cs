@@ -42,6 +42,7 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // textBox1
@@ -78,7 +79,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(160, 200);
+            this.button1.Location = new System.Drawing.Point(144, 230);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 25;
@@ -88,7 +89,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(241, 200);
+            this.button2.Location = new System.Drawing.Point(225, 230);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 26;
@@ -164,11 +165,22 @@
             this.label5.TabIndex = 36;
             this.label5.Text = "Ping Retry Before Down";
             // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Location = new System.Drawing.Point(144, 182);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(147, 17);
+            this.checkBox3.TabIndex = 38;
+            this.checkBox3.Text = "Enable Flash Down Node";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
             // SysParam
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(328, 235);
+            this.ClientSize = new System.Drawing.Size(325, 265);
+            this.Controls.Add(this.checkBox3);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.checkBox2);
@@ -207,5 +219,6 @@
         private System.Windows.Forms.CheckBox checkBox2;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox checkBox3;
     }
 }

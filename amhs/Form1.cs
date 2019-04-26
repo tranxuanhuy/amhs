@@ -51,6 +51,7 @@ namespace amhs
         {
             pictureBoxes[e].Image.Dispose();
             pictureBoxes[e].Image = ImageTransparency.ChangeOpacity(Image.FromFile("red.png"), opacityvalue);  //calling ChangeOpacity Function 
+            pictureBoxes[e].Image.Tag = "red";
             //pictureBoxes[e].Image = Image.FromFile("redblink.gif");   //calling ChangeOpacity Function 
 
             //neu enable sound alarm thi moi keu
@@ -68,7 +69,7 @@ namespace amhs
         {
             pictureBoxes[e].Image.Dispose();
             pictureBoxes[e].Image = ImageTransparency.ChangeOpacity(Image.FromFile("green.png"), opacityvalue);  //calling ChangeOpacity Function 
-
+            pictureBoxes[e].Image.Tag = "green";
 
         }
 
@@ -185,7 +186,7 @@ namespace amhs
             pictureBox.MouseDoubleClick += picBox_MouseClick;
 
             pictureBox.Image = ImageTransparency.ChangeOpacity(Image.FromFile("red.png"), opacityvalue);  //calling ChangeOpacity Function 
-            
+            pictureBox.Image.Tag = "red";
 
             this.Controls.Add(pictureBox);
             //check enable node move
@@ -211,7 +212,9 @@ namespace amhs
                 pictureBox.Name = node.Name;
                 pictureBox.Image.Dispose();
                 pictureBox.Image = ImageTransparency.ChangeOpacity(Image.FromFile("red.png"), opacityvalue);  //calling ChangeOpacity Function 
+                pictureBox.Image.Tag = "red";
                 pictureBox.Refresh();
+                networkHeartbeatRestart();
             }
             //node delete
             else if (nodeInfoStatusReturn == DialogResult.Abort)
@@ -219,6 +222,7 @@ namespace amhs
                 listNode.Remove(node);
                 pictureBox.Image.Dispose();
                 this.Controls.Remove(pictureBox);
+                networkHeartbeatRestart();
             }
             nodeInfo.Dispose();
         }
@@ -293,7 +297,7 @@ namespace amhs
         private void timer1_Tick(object sender, EventArgs e)
         {
             //update clock
-            label1.Text = DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss tt");
+            label1.Text = DateTime.Now.ToString("dd-MMM-yyyy hh:mm:ss");
 
             //update progress bar
             if (networkHeartbeat != null)
@@ -307,6 +311,24 @@ namespace amhs
                   
                         progressBar1.Value += 10;
                     
+                } 
+            }
+
+            //down node blink image
+            if (Properties.Settings.Default.FlashDownEnable)
+            {
+                for (int i = Controls.Count - 1; i >= 0; i--)
+                {
+                    if (Controls[i] is PictureBox)
+                    {
+                        var myImageBox = (PictureBox)Controls[i];
+                        string tag = (string)((PictureBox)Controls[i]).Image.Tag;
+                        if (tag.Equals("red"))
+                        {
+                            myImageBox.Visible = !myImageBox.Visible;
+                        }
+                    }
+
                 } 
             }
         }
