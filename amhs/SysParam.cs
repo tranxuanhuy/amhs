@@ -27,6 +27,7 @@ namespace amhs
             checkBox1.Checked= Properties.Settings.Default.PictureBoxLabelShow;
             checkBox2.Checked = Properties.Settings.Default.MovingNodeEnable;
             checkBox3.Checked = Properties.Settings.Default.FlashDownEnable;
+            checkBox4.Checked = Properties.Settings.Default.PlayLooping;
         }
 
         private void Button2_Click(object sender, EventArgs e)
@@ -45,6 +46,7 @@ namespace amhs
             Properties.Settings.Default.PictureBoxLabelShow = checkBox1.Checked;
             Properties.Settings.Default.MovingNodeEnable = checkBox2.Checked;
             Properties.Settings.Default.FlashDownEnable = checkBox3.Checked;
+            Properties.Settings.Default.PlayLooping = checkBox4.Checked;
             Properties.Settings.Default.Save();
             this.DialogResult = DialogResult.OK;
             this.Close();

@@ -45,6 +45,7 @@ namespace amhs
                 try
                 {
                     Debug.WriteLine("Heartbeat : starting ...");
+                    WriteLogFile("Heartbeat : starting ...");
 
                     int[] pingRetryDownCount = new int[Count];
                     // set up the tasks
@@ -99,6 +100,7 @@ namespace amhs
 
                             PingResults[i] = tasks[i].Result;
                             Debug.WriteLine("> Ping [" + PingResults[i].Status.ToString().ToUpper() + "] at " + EndPoints[i] + " in " + PingResults[i].RoundtripTime + " ms");
+                            WriteLogFile("> Ping [" + PingResults[i].Status.ToString().ToUpper() + "] at " + EndPoints[i] + " in " + PingResults[i].RoundtripTime + " ms");
                         }
 
                         OnPulseEnded(DateTime.Now, chrono.Elapsed);
@@ -108,10 +110,12 @@ namespace amhs
                         await Task.Delay(delay);
                     }
                     Debug.Write("Heartbeat : stopped");
+                    WriteLogFile("Heartbeat : stopped");
                 }
                 catch (Exception)
                 {
                     Debug.Write("Heartbeat : stopped after error");
+                    WriteLogFile("Heartbeat : stopped after error");
                     Running = false;
                     throw;
                 }
@@ -119,12 +123,27 @@ namespace amhs
             else
             {
                 Debug.WriteLine("Heartbeat : already started ...");
+               WriteLogFile("Heartbeat : already started ...");
+            }
+        }
+
+        private void WriteLogFile(string v)
+        {
+            String data = DateTime.Now.ToString("HH:mm:ss") + "\t" + v;
+     
+            //When Date change create new file, append log
+            var sFileName = Path.Combine(Directory.GetCurrentDirectory(), "log", DateTime.Today.ToString("yyyy_MM_dd") + ".log");
+            using (StreamWriter w = File.AppendText(sFileName))
+            {
+
+                w.WriteLine(data);
             }
         }
 
         public void Stop()
         {
             Debug.WriteLine("Heartbeat : stopping ...");
+            WriteLogFile("Heartbeat : stopping ...");
             Running = false;
         }
 
@@ -139,6 +158,7 @@ namespace amhs
             catch (Exception ex)
             {
                 Debug.Write("-[" + epIP + "] : error in SendPing()");
+                WriteLogFile("-[" + epIP + "] : error in SendPing()");
                 OnPingError(epIndex, ex);
                 return null;
             }
@@ -217,6 +237,7 @@ namespace amhs
         private void OnPulseStarted(DateTime date, TimeSpan delay)
         {
             Debug.WriteLine("# Heartbeat [PULSE START] after " + (int)delay.TotalMilliseconds + " ms");
+           WriteLogFile("# Heartbeat [PULSE START] after " + (int)delay.TotalMilliseconds + " ms");
             PulseStarted?.Invoke(this, new PulseEventArgs(date, delay));
         }
 
@@ -226,6 +247,7 @@ namespace amhs
         {
             PulseEnded?.Invoke(this, new PulseEventArgs(date, delay));
             Debug.WriteLine("# Heartbeat [PULSE END] after " + (int)delay.TotalMilliseconds + " ms");
+           WriteLogFile("# Heartbeat [PULSE END] after " + (int)delay.TotalMilliseconds + " ms");
         }
     }
 }

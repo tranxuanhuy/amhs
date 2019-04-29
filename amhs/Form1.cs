@@ -59,7 +59,14 @@ namespace amhs
             {
                 var alarmFilePath = !String.IsNullOrEmpty(listNode[e].AlarmFilename) ? Path.Combine(Directory.GetCurrentDirectory(), "soundAlarm", listNode[e].AlarmFilename) : Path.Combine(Directory.GetCurrentDirectory(), "soundAlarm", Properties.Settings.Default.AlarmFileName);
                 my_wave_file = new SoundPlayer(alarmFilePath);
-                my_wave_file.PlayLooping();
+                if (Properties.Settings.Default.PlayLooping)
+                {
+                    my_wave_file.PlayLooping();
+                }
+                else
+                {
+                    my_wave_file.Play();
+                }
             }
             
 

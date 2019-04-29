@@ -118,5 +118,17 @@ namespace amhs.Properties {
                 this["FlashDownEnable"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PlayLooping {
+            get {
+                return ((bool)(this["PlayLooping"]));
+            }
+            set {
+                this["PlayLooping"] = value;
+            }
+        }
     }
 }
