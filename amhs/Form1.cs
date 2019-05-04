@@ -31,6 +31,9 @@ namespace amhs
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            String data = DateTime.Now.ToString("HH:mm:ss") + "\tForm load";
+            AppendLogToFile(data);
+
             //this.TopMost = true;
             //this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
@@ -84,7 +87,7 @@ namespace amhs
         {
             //get IPadress and pass to ping function
             List<IPAddress> IPList = listNode.Select(o => IPAddress.Parse(o.IPAddress)).ToList();
-            networkHeartbeat = new NetworkHeartbeat(IPList, 1000, 5000,null);
+            networkHeartbeat = new NetworkHeartbeat(IPList, 1000, 5000,null,null);
             networkHeartbeat.PingUp += c_PingUp;
             networkHeartbeat.PingDown += c_PingDown;
 
@@ -273,7 +276,7 @@ namespace amhs
         {
             //get IPadress and pass to ping function
             List<IPAddress> IPList = listNode.Select(o => IPAddress.Parse(o.IPAddress)).ToList();
-            networkHeartbeat = new NetworkHeartbeat(IPList, Properties.Settings.Default.PingTimeout, Properties.Settings.Default.PingDelay, listNode);
+            networkHeartbeat = new NetworkHeartbeat(IPList, Properties.Settings.Default.PingTimeout, Properties.Settings.Default.PingDelay, listNode, System.IO.Path.GetRandomFileName());
             networkHeartbeat.PingUp += c_PingUp;
             networkHeartbeat.PingDown += c_PingDown;
 
@@ -372,5 +375,51 @@ namespace amhs
             UpdownTime updownTime = new UpdownTime(listNode);
             updownTime.Show();
         }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            String data = DateTime.Now.ToString("HH:mm:ss") + "\t" + e.ClickedItem.Text + " clicked";
+            AppendLogToFile(data);
+        }
+
+        private static void AppendLogToFile(string data)
+        {
+            var sFileName = Path.Combine(Directory.GetCurrentDirectory(), "log", DateTime.Today.ToString("yyyy_MM_dd") + ".log");
+            using (StreamWriter w = File.AppendText(sFileName))
+            {
+                w.WriteLine(data);
+            }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            String data = DateTime.Now.ToString("HH:mm:ss") + "\tForm closed";
+            AppendLogToFile(data);
+        }
+
+        private void updownTimeToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            String data = DateTime.Now.ToString("HH:mm:ss") + "\t" + e.ClickedItem.Text + " clicked";
+            AppendLogToFile(data);
+        }
+
+        private void pingToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            String data = DateTime.Now.ToString("HH:mm:ss") + "\t" + e.ClickedItem.Text + " clicked";
+            AppendLogToFile(data);
+        }
+
+        private void sysParamToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            String data = DateTime.Now.ToString("HH:mm:ss") + "\t" + e.ClickedItem.Text + " clicked";
+            AppendLogToFile(data);
+        }
+
+        private void fileToolStripMenuItem_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            String data = DateTime.Now.ToString("HH:mm:ss") + "\t" + e.ClickedItem.Text + " clicked";
+            AppendLogToFile(data);
+        }
+
     }
 }

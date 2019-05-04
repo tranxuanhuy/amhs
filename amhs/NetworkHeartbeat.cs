@@ -19,14 +19,15 @@ namespace amhs
         public int HeartbeatDelay { get; private set; }
         public IPAddress[] EndPoints { get; private set; }
         public string[] NodeNames { get; private set; }
-
+        public string networkHeartbeatThreadIdentifier { get; private set; }
         private int[] NodeTimeout;
 
         public int Count => EndPoints.Length;
         public PingReply[] PingResults { get; private set; }
         private Ping[] Pings { get; set; }
 
-        public NetworkHeartbeat(IEnumerable<IPAddress> hosts, int pingTimeout, int heartbeatDelay, IEnumerable<Node> listNode)
+
+        public NetworkHeartbeat(IEnumerable<IPAddress> hosts, int pingTimeout, int heartbeatDelay, IEnumerable<Node> listNode,string randomObjectname)
         {
             PingTimeout = pingTimeout;
             HeartbeatDelay = heartbeatDelay;
@@ -36,6 +37,7 @@ namespace amhs
             NodeTimeout = listNode.Select(o => o.Timeout).ToArray();
             PingResults = new PingReply[EndPoints.Length];
             Pings = EndPoints.Select(h => new Ping()).ToArray();
+            networkHeartbeatThreadIdentifier = randomObjectname;
         }
 
         public async void Start()
@@ -78,7 +80,7 @@ namespace amhs
                                 }
                                 else if (pingResult.Status != PingResults[i].Status)
                                 {
-                                    if (pingResult.Status == IPStatus.Success && pingRetryDownCount[i]> Properties.Settings.Default.PingRetryBeforeDown)
+                                    if (pingResult.Status == IPStatus.Success && pingRetryDownCount[i]>= Properties.Settings.Default.PingRetryBeforeDown)
                                         OnPingUp(i);
                                     else if (PingResults[i].Status == IPStatus.Success)
                                         pingRetryDownCount[i] = 0;
@@ -237,7 +239,7 @@ namespace amhs
         private void OnPulseStarted(DateTime date, TimeSpan delay)
         {
             Debug.WriteLine("# Heartbeat [PULSE START] after " + (int)delay.TotalMilliseconds + " ms");
-           WriteLogFile("# Heartbeat [PULSE START] after " + (int)delay.TotalMilliseconds + " ms");
+           WriteLogFile("# Heartbeat [PULSE START] after " + (int)delay.TotalMilliseconds + " ms "+networkHeartbeatThreadIdentifier);
             PulseStarted?.Invoke(this, new PulseEventArgs(date, delay));
         }
 
@@ -247,7 +249,7 @@ namespace amhs
         {
             PulseEnded?.Invoke(this, new PulseEventArgs(date, delay));
             Debug.WriteLine("# Heartbeat [PULSE END] after " + (int)delay.TotalMilliseconds + " ms");
-           WriteLogFile("# Heartbeat [PULSE END] after " + (int)delay.TotalMilliseconds + " ms");
+           WriteLogFile("# Heartbeat [PULSE END] after " + (int)delay.TotalMilliseconds + " ms "+networkHeartbeatThreadIdentifier);
         }
     }
 }

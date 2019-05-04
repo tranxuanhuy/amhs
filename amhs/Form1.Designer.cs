@@ -63,6 +63,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 5;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -73,6 +74,7 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.fileToolStripMenuItem_DropDownItemClicked);
             // 
             // loadBeginToolStripMenuItem
             // 
@@ -104,6 +106,7 @@
             this.sysParamToolStripMenuItem.Name = "sysParamToolStripMenuItem";
             this.sysParamToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.sysParamToolStripMenuItem.Text = "Edit";
+            this.sysParamToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.sysParamToolStripMenuItem_DropDownItemClicked);
             // 
             // downAcknowledgeToolStripMenuItem
             // 
@@ -135,6 +138,7 @@
             this.pingToolStripMenuItem.Name = "pingToolStripMenuItem";
             this.pingToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
             this.pingToolStripMenuItem.Text = "Ping";
+            this.pingToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.pingToolStripMenuItem_DropDownItemClicked);
             // 
             // startToolStripMenuItem
             // 
@@ -164,6 +168,7 @@
             this.updownTimeToolStripMenuItem.Name = "updownTimeToolStripMenuItem";
             this.updownTimeToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.updownTimeToolStripMenuItem.Text = "Log";
+            this.updownTimeToolStripMenuItem.DropDownItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.updownTimeToolStripMenuItem_DropDownItemClicked);
             // 
             // updownTimeToolStripMenuItem1
             // 
@@ -205,6 +210,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
