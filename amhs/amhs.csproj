@@ -56,6 +56,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlMover.cs" />
+    <Compile Include="ControlMoverOrResizer.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +107,8 @@
     <None Include="bin\Debug\amhs.exe.config" />
     <None Include="bin\Debug\config - Copy.json" />
     <None Include="bin\Debug\config.json" />
+    <None Include="bin\Debug\log\2019_04_23.log" />
+    <None Include="bin\Debug\log\2019_04_24.log" />
     <None Include="bin\Debug\nodeInputAtBeginning.csv" />
     <None Include="bin\Debug\nodeInputAtBeginning.xlsx" />
     <None Include="packages.config" />
@@ -138,6 +141,8 @@
     <Content Include="bin\Debug\Newtonsoft.Json.xml" />
     <Content Include="bin\Debug\nodeInputAtBeginning.txt" />
     <Content Include="bin\Debug\red.PNG" />
+    <Content Include="bin\Debug\redblink - Copy.gif" />
+    <Content Include="bin\Debug\redblink.gif" />
     <Content Include="bin\Debug\soundAlarm\AMHSDOWN-01.wav" />
     <Content Include="bin\Debug\soundAlarm\sound-timeout-record.wav" />
   </ItemGroup>

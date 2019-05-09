@@ -25,7 +25,7 @@ namespace amhs
             textBox3.Text = Properties.Settings.Default.AlarmFileName;
             textBox4.Text = Properties.Settings.Default.NodeSize.ToString();
             checkBox1.Checked= Properties.Settings.Default.PictureBoxLabelShow;
-            checkBox2.Checked = Properties.Settings.Default.MovingNodeEnable;
+            checkBox2.Checked = Properties.Settings.Default.MovingandResizeNodeEnable;
             checkBox3.Checked = Properties.Settings.Default.FlashDownEnable;
             checkBox4.Checked = Properties.Settings.Default.PlayLooping;
         }
@@ -44,7 +44,7 @@ namespace amhs
              Properties.Settings.Default.AlarmFileName= textBox3.Text;
             Properties.Settings.Default.NodeSize = int.Parse(textBox4.Text);
             Properties.Settings.Default.PictureBoxLabelShow = checkBox1.Checked;
-            Properties.Settings.Default.MovingNodeEnable = checkBox2.Checked;
+            Properties.Settings.Default.MovingandResizeNodeEnable = checkBox2.Checked;
             Properties.Settings.Default.FlashDownEnable = checkBox3.Checked;
             Properties.Settings.Default.PlayLooping = checkBox4.Checked;
             Properties.Settings.Default.Save();

@@ -44,9 +44,8 @@ namespace amhs
             opacityvalue = float.Parse("80") / 100;
 
             //load Config
-            LoadConfig();
-            //ping start
-            networkHeartbeatStart();
+            LoadConfig(sender);
+            
 
         }
 
@@ -124,26 +123,62 @@ namespace amhs
 
         private void saveConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //get position of pictureBox to save
+            //get position and size of pictureBox to save
             for (int i = 0; i < listNode.Count; i++)
             {
                 listNode.ElementAt(i).Location = pictureBoxes.ElementAt(i).Location;
+                listNode.ElementAt(i).Width = pictureBoxes.ElementAt(i).Width;
+                listNode.ElementAt(i).Height = pictureBoxes.ElementAt(i).Height;
             }
 
-            // serialize JSON to a string and then write string to a file
-            File.WriteAllText(@"config.json", JsonConvert.SerializeObject(listNode));
+            SaveFileDialog savefile = new SaveFileDialog();
+            // set a default file name
+            savefile.FileName = @"config.json";
+            savefile.InitialDirectory = Directory.GetCurrentDirectory();
+            // set filters - this can be done in properties as well
+            savefile.Filter =  "Json Files (*.json)|*.json";
+
+            if (savefile.ShowDialog() == DialogResult.OK)
+            {
+                // serialize JSON to a string and then write string to a file
+                File.WriteAllText(savefile.FileName, JsonConvert.SerializeObject(listNode));
+            }
+            
         }
 
         private void loadConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadConfig();
+            LoadConfig(sender);
         }
 
-        private void LoadConfig()
+        private void LoadConfig(object sender)
         {
-            listNode = JsonConvert.DeserializeObject<List<Node>>(File.ReadAllText(@"config.json"));
+            //if user click load profile, open dialog to select profile
+            if (sender.GetType().Name == "ToolStripMenuItem")
+            {
+                OpenFileDialog openDialog = new OpenFileDialog();
+                openDialog.Title = "Select A File";
+                openDialog.Filter = "Json Files (*.json)|*.json";
+                openDialog.InitialDirectory = Directory.GetCurrentDirectory();
+                openDialog.FileName = @"config.json";
+                if (openDialog.ShowDialog() == DialogResult.OK)
+                {
+                    listNode = JsonConvert.DeserializeObject<List<Node>>(File.ReadAllText(openDialog.FileName));
+                    drawListNode();
+                    //ping restart
+                    networkHeartbeatRestart();
+                } 
+            }
+            //default load profile when form load
+            else
+            {
+                listNode = JsonConvert.DeserializeObject<List<Node>>(File.ReadAllText(@"config.json"));
+                drawListNode();
+                //ping start
+                networkHeartbeatStart();
+            }
 
-            drawListNode();
+            
         }
 
         private void clearAllPictureBox()
@@ -175,6 +210,7 @@ namespace amhs
             PictureBox pictureBox = new PictureBox();
             pictureBox.BackColor = Color.Transparent;
 
+            //set location and size of picturebox when draw
             if (item.Location.Equals(new Point(0, 0)))
             {
                 pictureBox.Location = new System.Drawing.Point(103, 82);
@@ -183,8 +219,29 @@ namespace amhs
             {
                 pictureBox.Location = item.Location;
             }
+
+            //width
+            if (item.Width==0)
+            {
+                pictureBox.Width = Properties.Settings.Default.NodeSize;
+            }
+            else
+            {
+                pictureBox.Width = item.Width;
+            }
+
+            //height
+            if (item.Height == 0)
+            {
+                pictureBox.Height = Properties.Settings.Default.NodeSize;
+            }
+            else
+            {
+                pictureBox.Height = item.Height;
+            }
+
             pictureBox.Name = item.Name;
-            pictureBox.Size = new System.Drawing.Size(Properties.Settings.Default.NodeSize, Properties.Settings.Default.NodeSize);
+            pictureBox.Size = new System.Drawing.Size(pictureBox.Width, pictureBox.Height);
             pictureBox.TabIndex = 0;
             pictureBox.TabStop = false;
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -200,9 +257,10 @@ namespace amhs
 
             this.Controls.Add(pictureBox);
             //check enable node move
-            if (Properties.Settings.Default.MovingNodeEnable)
+            if (Properties.Settings.Default.MovingandResizeNodeEnable)
             {
-                ControlMover.Init(pictureBox); 
+                //ControlMover.Init(pictureBox); 
+                ControlMoverOrResizer.Init(pictureBox);
             }
             pictureBoxes.Add(pictureBox);
         }

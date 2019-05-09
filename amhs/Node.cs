@@ -17,6 +17,8 @@ namespace amhs
   private   string   iPAddress;
   private   bool        alarmEnable;
   private   int       timeout;
+        private int width;
+        private int height;
         private string  addressName;
         private string  soundFilePath;
         private string  remoteConnectUser;
@@ -33,6 +35,8 @@ namespace amhs
         public string RemoteConnectPass { get => remoteConnectPass; set => remoteConnectPass = value; }
         public string AddressName { get => addressName; set => addressName = value; }
         public int ID1 { get => ID; set => ID = value; }
+        public int Width { get => width; set => width = value; }
+        public int Height { get => height; set => height = value; }
 
         public static Node FromTxt(string txtLine)
         {
