@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="ControlMover.cs" />
     <Compile Include="ControlMoverOrResizer.cs" />
+    <Compile Include="Crypto.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +88,7 @@
     <Compile Include="UpdownTime.Designer.cs">
       <DependentUpon>UpdownTime.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReadWriteFile.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

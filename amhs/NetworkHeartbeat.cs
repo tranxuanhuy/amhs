@@ -134,12 +134,8 @@ namespace amhs
             String data = DateTime.Now.ToString("HH:mm:ss") + "\t" + v;
      
             //When Date change create new file, append log
-            var sFileName = Path.Combine(Directory.GetCurrentDirectory(), "log", DateTime.Today.ToString("yyyy_MM_dd") + ".log");
-            using (StreamWriter w = File.AppendText(sFileName))
-            {
-
-                w.WriteLine(data);
-            }
+            var sFileName = DateTime.Today.ToString("yyyy_MM_dd") + ".log";
+            new ReadWriteFile(sFileName, data).Append();
         }
 
         public void Stop()
@@ -193,12 +189,8 @@ namespace amhs
             Debug.WriteLine(data);
 
             //When Date change create new file, append log
-            var sFileName = Path.Combine(Directory.GetCurrentDirectory(), "log", DateTime.Today.ToString("yyyy_MM_dd") + ".log");
-            using (StreamWriter w = File.AppendText(sFileName))
-            {
-                
-                w.WriteLine(data);
-            }
+            var sFileName = DateTime.Today.ToString("yyyy_MM_dd") + ".log";
+            new ReadWriteFile(sFileName, data).Append();
 
             PingDown?.Invoke(this, epIndex);
         }
@@ -214,11 +206,8 @@ namespace amhs
             Debug.WriteLine(data);
 
             //When Date change create new file, append log
-            var sFileName = Path.Combine(Directory.GetCurrentDirectory(), "log", DateTime.Today.ToString("yyyy_MM_dd") + ".log")  ;
-            using (StreamWriter w = File.AppendText(sFileName))
-            {
-                w.WriteLine(data);
-            }
+            var sFileName = DateTime.Today.ToString("yyyy_MM_dd") + ".log";
+            new ReadWriteFile(sFileName, data).Append();
 
             PingUp?.Invoke(this, epIndex);
         }

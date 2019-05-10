@@ -51,7 +51,7 @@ foreach (var item in listNode)
             textBox1.Clear();
             try
             {
-                relevantLines = File.ReadLines(Path.Combine(Directory.GetCurrentDirectory(), "log", dateTimePicker1.Value.ToString("yyyy_MM_dd") + ".log"))
+                relevantLines = new ReadWriteFile().ReadLines(dateTimePicker1.Value.ToString("yyyy_MM_dd") + ".log")
                                                 .Where(l => l.EndsWith(listBox1.SelectedValue.ToString()));
             }
             catch (Exception)

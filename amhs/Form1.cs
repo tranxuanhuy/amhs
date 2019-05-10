@@ -442,11 +442,8 @@ namespace amhs
 
         private static void AppendLogToFile(string data)
         {
-            var sFileName = Path.Combine(Directory.GetCurrentDirectory(), "log", DateTime.Today.ToString("yyyy_MM_dd") + ".log");
-            using (StreamWriter w = File.AppendText(sFileName))
-            {
-                w.WriteLine(data);
-            }
+            var sFileName = DateTime.Today.ToString("yyyy_MM_dd") + ".log";
+            new ReadWriteFile(sFileName, data).Append();
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
